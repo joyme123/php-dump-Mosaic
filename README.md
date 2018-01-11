@@ -13,3 +13,6 @@
 
  -  3.php dump.php src.jpg 20
 生成最终要生成的图片，src.jpg是要处理的源图像，生成的图片名为dest-dump,`20`是多少个像素作为一个处理单位，和第二条指令中的`20`需要保持一致。
+
+效果图如下：
+![](https://github.com/joyme123/php-dump-Mosaic/blob/master/dest-dump.jpg)
