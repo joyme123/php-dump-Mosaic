@@ -47,6 +47,7 @@ function findSimilar($assets,$vector){
 
 if(count($argv) >= 3){
 
+    $start_memory = memory_get_usage();     //开始占用内存
 
 
     $filepath = $argv[1];       //要处理的图片路径
@@ -97,9 +98,11 @@ if(count($argv) >= 3){
         }
     }
 
-    echo "总共有".$loop_count."张贴图\n";
-
     $destImagick->writeImage("dest-dump.jpg");
+
+    $end_memory = memory_get_usage();     //结束占用内存
+    echo "总共有".$loop_count."张贴图\n";
+    echo '共占用内存:'.(($end_memory - $start_memory) / (1024 * 1024))."MB\n";
 
 }else{
     echo "请传一个需要处理的图片\n";   

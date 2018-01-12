@@ -8,17 +8,24 @@ function getColorMat(Imagick $imagick){
 
     $it = new ImagickPixelIterator($imagick);
     
-    $mat = array();
+    $row_size = $imagick->getImageHeight();
+    $col_size = $imagick->getImageWidth();
+
+    $mat = new SplFixedArray($row_size);
     
+    $row_count = 0;
+
     while($row = $it->getNextIteratorRow()){
         if(count($row) == 0)
             break;
-        $rowColor = array();
-        foreach($row as &$pixel){
-            $rowColor[] = $pixel->getColor();
+        $rowColor = new SplFixedArray($col_size);
+        for($i = 0; $i < $col_size; $i++){
+            $pixel = $row[$i];
+            $rowColor[$i] = $pixel->getColor();
         }
-        $mat[] = $rowColor;
+        $mat[$row_count] = $rowColor;
         unset($rowColor);
+        $row_count++;
     }
 
     $it->destroy();     //销毁资源
