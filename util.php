@@ -18,6 +18,7 @@ function getColorMat(Imagick $imagick){
             $rowColor[] = $pixel->getColor();
         }
         $mat[] = $rowColor;
+        unset($rowColor);
     }
 
     $it->destroy();     //销毁资源
